@@ -6,7 +6,7 @@
  * Time: 23:46
  */
 
-namespace JenFrame\Core\Db;
+namespace NeoParla\DbEscaper;
 
 class DbTuple
 {

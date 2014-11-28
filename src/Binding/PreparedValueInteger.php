@@ -6,9 +6,9 @@
  * Time: 23:07
  */
 
-namespace JenFrame\Core\Db;
+namespace NeoParla\DbEscaper;
 
-class PreparedValueString implements PreparedValue
+class PreparedValueInteger implements PreparedValue
 {
 
 	protected $raw_value;
@@ -20,17 +20,17 @@ class PreparedValueString implements PreparedValue
 
 	public function isValid()
 	{
-		return is_string( $this->raw_value );
+		return is_int( $this->raw_value );
 	}
 
 	public function getValue( DbLink $db_link )
 	{
 		if ( !$this->isValid() )
 		{
-			throw new PreparedValue_Exception( '"' . $this->raw_value . '" is not a valid string' );
+			throw new PreparedValue_Exception( '"' . $this->raw_value . '" is not a valid integer' );
 		}
 
-		return '\'' . $db_link->escapeString( $this->raw_value ) . '\'';
+		return $this->raw_value;
 	}
 
 }

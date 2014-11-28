@@ -6,7 +6,7 @@
  * Time: 0:26
  */
 
-namespace JenFrame\Core\Db;
+namespace NeoParla\DbEscaper;
 
 class PreparedValueField implements PreparedValue
 {

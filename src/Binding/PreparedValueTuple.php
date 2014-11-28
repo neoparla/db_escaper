@@ -6,7 +6,7 @@
  * Time: 23:55
  */
 
-namespace JenFrame\Core\Db;
+namespace NeoParla\DbEscaper;
 
 class PreparedValueTuple implements PreparedValue
 {

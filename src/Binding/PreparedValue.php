@@ -6,7 +6,7 @@
  * Time: 23:15
  */
 
-namespace JenFrame\Core\Db;
+namespace NeoParla\DbEscaper;
 
 interface PreparedValue
 {

@@ -3,7 +3,7 @@
  * @author Pau Perez <pau.perez.molins@gmail.com>
  */
 
-namespace JenFrame\Core\Db;
+namespace NeoParla\DbEscaper;
 
 class DbLink
 {

@@ -6,7 +6,7 @@
  * Time: 21:17
  */
 
-namespace JenFrame\Core\Db;
+namespace NeoParla\DbEscaper;
 
 class DbStatement
 {
