@@ -52,7 +52,7 @@ class DbTuple {
                 throw new BindingException('Invalid binding type "' . $this->types[$count] . '"');
             }
             $class = new $class( $link, $this->values[$count] );
-            $values[] = $class->getRealValue( $link );
+            $values[] = $class->getRealValue();
         }
 
         $real_values = implode( ', ', $values );
