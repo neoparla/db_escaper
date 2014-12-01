@@ -5,8 +5,6 @@
 
 namespace NeoParla\DbEscaper;
 
-use JenFrame\Core\AppConfig;
-
 class Database
 {
 
