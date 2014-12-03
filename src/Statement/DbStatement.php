@@ -57,7 +57,7 @@ class DbStatement {
      */
     public function execute() {
         $this->link->connect();
-        var_dump($this->getRealQuery());
+        return $this->link->query($this->getRealQuery());
     }
 
     /**
