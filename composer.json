@@ -1,0 +1,15 @@
+{
+	"name": "neoparla/db-escaper",
+	"description": "Database wrapper to escape properly, allowing meaningful queries with parametrized values",
+	"license": "proprietary",
+
+	"autoload": {
+		"psr-4": {
+			"NeoParla\\DbEscaper\\": "src/"
+		}
+	},
+
+	"require": {
+		"ext-mysqli": "*"
+	}
+}
