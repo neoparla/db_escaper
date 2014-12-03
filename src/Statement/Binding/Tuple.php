@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pau.perez
- * Date: 12/1/14
- * Time: 2:43 PM
- */
 
 namespace NeoParla\DbEscaper\Statement\Binding;
 
