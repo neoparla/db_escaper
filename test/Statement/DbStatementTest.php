@@ -9,6 +9,7 @@
 namespace NeoParla\DbEscaper\Statement;
 
 
+use NeoParla\DbEscaper\Statement\Binding\Binding;
 use PHPUnit_Framework_MockObject_MockObject;
 use PHPUnit_Framework_TestCase;
 
@@ -127,6 +128,71 @@ class DbStatementTest extends PHPUnit_Framework_TestCase {
         $this->assertNotSame($value, $value_binded_first_call);
         $this->assertSame($value, $value_binded_last_call);
         $this->assertCount(1, $parameters, 'If more than one binding, more than one parameter');
+    }
+
+    /**
+     * @test
+     */
+    public function executeWhenNoBindings()
+    {
+        $mocked_link = $this->getLinkMocked();
+
+        $mocked_link
+            ->expects($this->once())
+            ->method('connect');
+
+        $query = $this->randomString();
+        $mocked_link
+            ->expects($this->once())
+            ->method('query')
+            ->with($this->identicalTo($query))
+            ->will($this->returnValue($query));
+
+        $obj = new DbStatement($mocked_link, $query, $this->randomString());
+
+        $this->assertEquals(
+            $query,
+            $obj->execute(),
+            'When executing, method should return directly from Link::execute() method'
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function executeWhenBindingsOnQuery()
+    {
+        $query = 'query to be :parsed';
+
+        $mocked_link = $this->getLinkMocked();
+
+        $mocked_link
+            ->expects($this->once())
+            ->method('connect');
+
+        $mocked_link
+            ->expects($this->once())
+            ->method('query')
+            ->with(
+                $this->equalTo('query to be \'executed\'')
+            )
+            ->will($this->returnValue($query));
+
+        $mocked_link
+            ->expects($this->once())
+            ->method('realEscape')
+            ->will($this->returnArgument(0));
+
+        $obj = new DbStatement($mocked_link, $query, $this->randomString());
+
+        $value = 'executed';
+        $obj->bindParam(':parsed', $value, Binding::PARAM_STRING);
+
+        $this->assertEquals(
+            $query,
+            $obj->execute(),
+            'When executing, method should return directly from Link::execute() method'
+        );
     }
 
     /**
