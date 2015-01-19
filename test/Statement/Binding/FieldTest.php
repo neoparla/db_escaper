@@ -37,7 +37,6 @@ class FieldTest extends BindingTestAbstract {
             'Fields with ; character' => array('field;field'),
             'Fields with : character' => array('field:field'),
             'Fields with - character' => array('field-field'),
-//            'Field with symbols value' => array('field:with:symbols'),
         );
     }
 
