@@ -15,13 +15,20 @@ class Field implements Binding {
 
     public function isValid()
     {
-        return preg_match('/^[\x{0000}-\x{FFFF}]+$/u', $this->value);
+        return (
+            (
+                is_string($this->value)
+                && preg_match('/^[\x{0001}-\x{FFFF}]+$/u', $this->value)
+            )
+            && !preg_match('@\s$@', $this->value)
+            && !preg_match('@(/|\\\|\.|:|;|-)@', $this->value)
+        );
     }
 
     public function getRealValue()
     {
         if (!$this->isValid()) {
-            throw new BindingException('"' . (string) $this->value . '" is not a valid Field value');
+            throw new BindingException('Not a valid Field value');
         }
 
         return "`{$this->value}`";

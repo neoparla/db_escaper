@@ -186,7 +186,7 @@ class DbStatementTest extends PHPUnit_Framework_TestCase {
         $obj = new DbStatement($mocked_link, $query, $this->randomString());
 
         $value = 'executed';
-        $obj->bindParam(':parsed', $value, Binding::PARAM_STRING);
+        $obj->bindParam(':parsed', $value, Binding::STRING);
 
         $this->assertEquals(
             $query,
