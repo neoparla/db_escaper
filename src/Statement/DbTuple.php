@@ -19,13 +19,7 @@ class DbTuple {
     {
         $this->values		= $values;
         $this->parenthesis	= $with_parenthesis;
-
-        if ( is_array( $types ) && count( $types ) !== count( $values ) )
-        {
-            throw new BindingException( 'Number of types and parameters doesn\'t match' );
-        }
-
-        $this->types = is_array( $types ) ? $types : array_fill( 0, count( $values ), $types );
+        $this->types        = $types;
     }
 
     /**
@@ -35,6 +29,8 @@ class DbTuple {
      */
     public function buildValues( Link $link )
     {
+        $this->buildTypesArray();
+
         $count	= 0;
         $max	= count( $this->types );
 
@@ -52,9 +48,22 @@ class DbTuple {
         $real_values = implode( ', ', $values );
         if ( $this->parenthesis )
         {
-            $real_values = '( ' . $real_values . ' )';
+            $real_values = '(' . $real_values . ')';
         }
 
         return $real_values;
     }
-} 
+
+    /**
+     * @return array
+     * @throws Binding\BindingException
+     */
+    private function buildTypesArray()
+    {
+        if (is_array($this->types) && count($this->types) !== count($this->values)) {
+            throw new BindingException('Number of types and parameters doesn\'t match');
+        }
+
+        $this->types = is_array($this->types) ? $this->types : array_fill(0, count($this->values), $this->types);
+    }
+}
