@@ -82,7 +82,7 @@ abstract class BindingTestAbstract extends PHPUnit_Framework_TestCase{
      * @test
      * @dataProvider validTypesProvider
      */
-    final public function gettingRealValueWhenValidTypes($value) {
+    public function gettingRealValueWhenValidTypes($value) {
         $fixture = $this->getFixture($this->getBindingType(), $value);
 
         $this->assertEquals(
