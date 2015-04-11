@@ -1,7 +1,13 @@
 {
 	"name": "neoparla/db-escaper",
-	"description": "Database wrapper to escape properly, allowing meaningful queries with parametrized values",
-	"license": "proprietary",
+    "description": "Database wrapper to escape properly, allowing meaningful queries with parametrized values",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pau Perez",
+            "email": "pau.perez.molins@gmail.com"
+        }
+    ],
 
 	"autoload": {
 		"psr-4": {
