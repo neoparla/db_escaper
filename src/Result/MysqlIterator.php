@@ -103,7 +103,7 @@ class MysqlIterator implements DbIterator {
      */
     public function offsetExists($offset)
     {
-        if (!$this->result->data_seek($offset)) {
+        if ($this->result->data_seek($offset)) {
             $this->result->data_seek($this->index);
             return true;
         }

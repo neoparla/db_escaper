@@ -2,7 +2,6 @@
 
 namespace NeoParla\DbEscaper\Statement\Binding;
 
-
 use NeoParla\DbEscaper\Link;
 
 class Integer implements Binding {
@@ -15,17 +14,16 @@ class Integer implements Binding {
 
     public function isValid()
     {
-        if (
+        return (
             is_numeric($this->value)
             && $this->value == intval($this->value)
-        )
-        return true;
+        );
     }
 
     public function getRealValue()
     {
         if (!$this->isValid()) {
-            throw new BindingException('"' . (string) $this->value . '" is not a valid Integer value');
+            throw new BindingException('Not a valid Integer value');
         }
 
         return intval($this->value);

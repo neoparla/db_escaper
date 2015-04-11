@@ -2,7 +2,6 @@
 
 namespace NeoParla\DbEscaper\Result;
 
-
 use ArrayAccess;
 use Countable;
 use Iterator;

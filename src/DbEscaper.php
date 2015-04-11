@@ -2,7 +2,6 @@
 
 namespace NeoParla\DbEscaper;
 
-
 use NeoParla\DbEscaper\Link\MySql;
 use NeoParla\DbEscaper\Statement\DbStatement;
 
@@ -11,7 +10,7 @@ class DbEscaper {
     /**
      * @var DbEscaper[]
      */
-    private static $links = array();
+    private static $instances = array();
 
     /**
      * @var Link
@@ -31,11 +30,11 @@ class DbEscaper {
         asort($connection_data);
         $key = json_encode($connection_data);
 
-        if (!isset(self::$links[$key])) {
-            self::$links[$key] = new self($connection_data);
+        if (!isset(self::$instances[$key])) {
+            self::$instances[$key] = new self($connection_data);
         }
 
-        return self::$links[$key];
+        return self::$instances[$key];
     }
 
     /**
@@ -43,6 +42,7 @@ class DbEscaper {
      * @return mixed|Result\DbIterator
      */
     public function query($query) {
+        $this->link->connect();
         return $this->link->query($query);
     }
 

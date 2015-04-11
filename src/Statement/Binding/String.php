@@ -2,7 +2,6 @@
 
 namespace NeoParla\DbEscaper\Statement\Binding;
 
-
 use NeoParla\DbEscaper\Link;
 
 class String implements Binding {
@@ -15,15 +14,22 @@ class String implements Binding {
         $this->link = $link;
     }
 
+    /**
+     * @return bool
+     */
     public function isValid()
     {
         return is_string($this->value);
     }
 
+    /**
+     * @return string
+     * @throws BindingException Thrown when invalid type
+     */
     public function getRealValue()
     {
         if (!$this->isValid()) {
-            throw new BindingException('"' . (string) $this->value . '" is not a valid String value');
+            throw new BindingException('Not a valid String value');
         }
 
         return '\'' . $this->link->realEscape($this->value) . '\'';

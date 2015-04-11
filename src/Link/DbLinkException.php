@@ -2,10 +2,9 @@
 
 namespace NeoParla\DbEscaper\Link;
 
-
-use NeoParla\DbEscaper\DbEscaperException as Exception;
+use NeoParla\DbEscaper\DbEscaperException;
 use NeoParla\DbEscaper\Link;
 
-class DbLinkException extends Exception
+class DbLinkException extends DbEscaperException
 {
-} 
+}

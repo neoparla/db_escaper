@@ -2,7 +2,6 @@
 
 namespace NeoParla\DbEscaper\Statement\Binding;
 
-
 use NeoParla\DbEscaper\Link;
 
 class Double implements Binding {
@@ -15,17 +14,16 @@ class Double implements Binding {
 
     public function isValid()
     {
-        if (
+        return (
             is_numeric($this->value)
             && $this->value == doubleval($this->value)
-        )
-        return true;
+        );
     }
 
     public function getRealValue()
     {
         if (!$this->isValid()) {
-            throw new BindingException('"' . (string) $this->value . '" is not a valid Double value');
+            throw new BindingException('Not a valid Double value');
         }
 
         return doubleval($this->value);

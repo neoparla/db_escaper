@@ -8,16 +8,17 @@ use NeoParla\DbEscaper\Link;
 use NeoParla\DbEscaper\Result\DbIterator;
 use NeoParla\DbEscaper\Result\MysqlIterator;
 
-class MySql implements Link {
+class MySql implements Link
+{
 
+    const DEFAULT_PORT = 3306;
     const DEFAULT_CHARSET = 'utf8';
 
     private $host;
     private $user;
     private $pass;
     private $schema;
-
-    private $port = 3306;
+    private $port = self::DEFAULT_PORT;
 
     /**
      * @var Mysqli
@@ -32,13 +33,15 @@ class MySql implements Link {
     /**
      * @var string[]
      */
-    private $errors;
+    private $errors = array();
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->link = new mysqli();
     }
 
-    public function getShellCommand() {
+    public function getShellCommand()
+    {
         return <<<COMMAND
 mysql -h{$this->host} -u{$this->user} -p{$this->pass} -P{$this->port} {$this->schema}
 COMMAND;
@@ -52,13 +55,16 @@ COMMAND;
      */
     public function connect()
     {
-        $this->link->real_connect($this->host, $this->user, $this->pass, $this->schema, $this->port);
-        if ($this->link->connect_error) {
-            throw new DbLinkException($this->link->connect_error);
-        }
+        if (!$this->is_connected) {
+            $this->link->real_connect($this->host, $this->user, $this->pass, $this->schema, $this->port);
+            if ($this->link->connect_error) {
+                $this->errors[] = $this->link->connect_error;
+                throw new DbLinkException($this->link->connect_error, $this->link->connect_errno);
+            }
 
-        $this->link->set_charset(self::DEFAULT_CHARSET);
-        $this->is_connected = true;
+            $this->link->set_charset(self::DEFAULT_CHARSET);
+            $this->is_connected = true;
+        }
     }
 
     /**
@@ -70,13 +76,8 @@ COMMAND;
      */
     public function query($query)
     {
-        if (!$this->is_connected) {
-            $this->connect();
-        }
-
         $result = $this->link->query($query);
-        if ( !$result )
-        {
+        if (false === $result) {
             $message = <<<ERROR
 Error on '{$this->user}@{$this->host}' when executing
 {$query}
@@ -84,11 +85,11 @@ Error on '{$this->user}@{$this->host}' when executing
 Message error: {$this->link->error}
 ERROR;
 
-            throw new DbLinkException( $message );
+            $this->errors[] = $message;
+            throw new DbLinkException($message);
         }
 
-        if ( !$result instanceof \mysqli_result )
-        {
+        if (!$result instanceof \mysqli_result) {
             return $result;
         }
 
@@ -120,7 +121,7 @@ ERROR;
      * @param string $name Method to be called.
      * @param array $arguments Arguments to use on method call.
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function __call($name, array $arguments)
     {
@@ -128,6 +129,7 @@ ERROR;
             return call_user_func_array(array($this->link, $name), $arguments);
         } else {
             $this->errors[] = get_class($this->link) . '::' . $name . ' is not callable method';
+            return null;
         }
     }
 
@@ -144,8 +146,7 @@ ERROR;
 
         $this->schema = $data['schema'];
 
-        if ( isset( $data['port'] ) )
-        {
+        if (isset($data['port'])) {
             $this->port = $data['port'];
         }
     }
@@ -157,7 +158,11 @@ ERROR;
      */
     public function getLastError()
     {
-        return $this->errors[count($this->errors) - 1];
+        $i = count($this->errors) - 1;
+
+        return ($i >= 0)
+            ? $this->errors[$i]
+            : null;
     }
 
     /**
@@ -171,10 +176,18 @@ ERROR;
     }
 
     /**
-     * @return boolean
+     * Get connection data.
+     *
+     * @return array
      */
-    public function getIsConnected()
+    public function getConnectionData()
     {
-        return $this->is_connected;
+        return array(
+            'host' => $this->host,
+            'pass' => $this->pass,
+            'port' => $this->port,
+            'schema' => $this->schema,
+            'user' => $this->user,
+        );
     }
 }

@@ -75,7 +75,7 @@ class DbStatement {
             throw new BindingException('Invalid binding type "' . $type_value . '"');
         }
 
-        $this->parameters[] = array(
+        $this->parameters[$to_replace] = array(
             'search'    => $to_replace,
             'binding'   => new $class($this->link, $value)
         );
