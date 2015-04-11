@@ -11,7 +11,7 @@
          bootstrap="vendor/autoload.php">
     <testsuites>
         <testsuite name="DbEscaper test suite">
-            <directory>./tests</directory>
+            <directory>./test</directory>
         </testsuite>
     </testsuites>
     <filter>
