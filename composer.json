@@ -1,5 +1,5 @@
 {
-	"name": "neoparla/db-escaper",
+	"name": "neoparla/dbescaper",
     "description": "Database wrapper to escape properly, allowing meaningful queries with parametrized values",
     "license": "MIT",
     "authors": [
