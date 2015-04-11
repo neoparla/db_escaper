@@ -2,7 +2,6 @@
 
 namespace NeoParla\DbEscaper\Link;
 
-
 use NeoParla\DbEscaper\DbEscaperException;
 use NeoParla\DbEscaper\Link;
 

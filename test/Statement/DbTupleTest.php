@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pau.perez
- * Date: 1/19/15
- * Time: 2:50 PM
- */
 
 namespace NeoParla\DbEscaper\Statement;
-
 
 use PHPUnit_Framework_TestCase;
 use NeoParla\DbEscaper\Statement\Binding\Binding;

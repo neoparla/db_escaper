@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pau.perez
- * Date: 4/9/15
- * Time: 7:55 PM
- */
+
 namespace NeoParla\DbEscaper;
 
 use PHPUnit_Framework_TestCase;

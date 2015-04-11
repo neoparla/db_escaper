@@ -1,15 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pau.perez
- * Date: 1/19/15
- * Time: 11:47 AM
- */
 
 namespace NeoParla\DbEscaper\Statement\Binding;
 
-
-use NeoParla\DbEscaper\Statement\DbTuple;
 use PHPUnit_Framework_MockObject_MockObject;
 use stdClass;
 

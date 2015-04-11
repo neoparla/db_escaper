@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pau.perez
- * Date: 4/9/15
- * Time: 8:06 PM
- */
 
 namespace NeoParla\DbEscaper\Result;
 

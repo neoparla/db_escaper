@@ -2,7 +2,6 @@
 
 namespace NeoParla\DbEscaper\Statement\Binding;
 
-
 use NeoParla\DbEscaper\Link;
 
 interface Binding {

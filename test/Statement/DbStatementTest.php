@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pau.perez
- * Date: 12/3/14
- * Time: 5:15 PM
- */
 
 namespace NeoParla\DbEscaper\Statement;
-
 
 use NeoParla\DbEscaper\Statement\Binding\Binding;
 use PHPUnit_Framework_MockObject_MockObject;

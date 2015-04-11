@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pau.perez
- * Date: 1/19/15
- * Time: 10:23 AM
- */
 
 namespace NeoParla\DbEscaper\Statement\Binding;
-
 
 use stdClass;
 

@@ -2,7 +2,6 @@
 
 namespace NeoParla\DbEscaper;
 
-
 use NeoParla\DbEscaper\Link\MySql;
 use NeoParla\DbEscaper\Statement\DbStatement;
 

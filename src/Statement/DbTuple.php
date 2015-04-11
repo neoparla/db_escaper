@@ -2,7 +2,6 @@
 
 namespace NeoParla\DbEscaper\Statement;
 
-
 use NeoParla\DbEscaper\Link;
 use NeoParla\DbEscaper\Statement\Binding\BindingException;
 
