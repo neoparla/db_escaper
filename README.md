@@ -1,6 +1,5 @@
 # DbEscaper
-[![Build Status](https://travis-ci.org/neoparla/db_escaper.svg?branch=master)](https://travis-ci.org/neoparla/db_escaper)
-
+[![Build Status](https://travis-ci.org/neoparla/dbescaper.svg?branch=master)](https://travis-ci.org/neoparla/dbescaper)
 
 Database wrapper to escape properly, allowing meaningful queries with parametrized values
 ## Getting started
