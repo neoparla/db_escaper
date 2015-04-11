@@ -68,4 +68,11 @@ interface Link
      */
     public function getShellCommand();
 
+    /**
+     * Get connection data.
+     *
+     * @return array
+     */
+    public function getConnectionData();
+
 } 
