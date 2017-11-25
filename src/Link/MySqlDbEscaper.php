@@ -8,7 +8,7 @@ use NeoParla\DbEscaper\Link;
 use NeoParla\DbEscaper\Result\DbIterator;
 use NeoParla\DbEscaper\Result\MysqlIterator;
 
-class MySql implements Link
+class MySqlDbEscaper implements Link
 {
 
     const DEFAULT_PORT = 3306;

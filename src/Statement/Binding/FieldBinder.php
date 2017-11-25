@@ -4,7 +4,7 @@ namespace NeoParla\DbEscaper\Statement\Binding;
 
 use NeoParla\DbEscaper\Link;
 
-class Field implements Binding {
+class FieldBinder implements Binding {
 
     private $value;
     public function __construct(Link $link, $value)

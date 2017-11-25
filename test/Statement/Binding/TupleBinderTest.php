@@ -5,7 +5,7 @@ namespace NeoParla\DbEscaper\Statement\Binding;
 use PHPUnit_Framework_MockObject_MockObject;
 use stdClass;
 
-class TupleTest extends BindingTestAbstract {
+class TupleBinderTest extends BindingTestAbstract {
 
     /**
      * @return string

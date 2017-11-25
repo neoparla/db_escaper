@@ -11,7 +11,7 @@ class MysqlTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function constructUsingMySqliObject()
     {
-        $object = new MySql();
+        $object = new MySqlDbEscaper();
         $this->assertAttributeInstanceOf(
             '\mysqli',
             'link',
@@ -23,7 +23,7 @@ class MysqlTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function settingConnectionDataDefaultPort()
     {
-        $object = new MySql();
+        $object = new MySqlDbEscaper();
 
         $object->setConnectionData($this->getStubbedConnectionData());
 
@@ -31,14 +31,14 @@ class MysqlTest extends \PHPUnit_Framework_TestCase
         $this->assertAttributeSame('user', 'user', $object);
         $this->assertAttributeSame('pass', 'pass', $object);
         $this->assertAttributeSame('schema', 'schema', $object);
-        $this->assertAttributeSame(MySql::DEFAULT_PORT, 'port', $object);
+        $this->assertAttributeSame(MySqlDbEscaper::DEFAULT_PORT, 'port', $object);
         $this->assertAttributeSame(false, 'is_connected', $object);
     }
 
     /** @test */
     public function settingConnectionData()
     {
-        $object = new MySql();
+        $object = new MySqlDbEscaper();
 
         $data = $this->getStubbedConnectionData();
         $data['port'] = 'customized_port';
@@ -60,13 +60,13 @@ class MysqlTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('real_connect')
             ->with(
-                'host', 'user', 'pass', 'schema', MySql::DEFAULT_PORT
+                'host', 'user', 'pass', 'schema', MySqlDbEscaper::DEFAULT_PORT
             );
 
         $mocked_link
             ->expects($this->once())
             ->method('set_charset')
-            ->with(MySql::DEFAULT_CHARSET);
+            ->with(MySqlDbEscaper::DEFAULT_CHARSET);
 
         $mocked_link->connect_error = false;
         $object->connect();
@@ -109,7 +109,7 @@ class MysqlTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('real_connect')
             ->with(
-                'host', 'user', 'pass', 'schema', MySql::DEFAULT_PORT
+                'host', 'user', 'pass', 'schema', MySqlDbEscaper::DEFAULT_PORT
             );
 
         $mocked_link
@@ -261,13 +261,13 @@ class MysqlTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param $methods
-     * @return MySql
+     * @return MySqlDbEscaper
      */
     private function getFixture(array $methods = array())
     {
         $mock = $this->getMock('\stdClass', $methods);
 
-        $object = new MySql();
+        $object = new MySqlDbEscaper();
         $object->setConnectionData($this->getStubbedConnectionData());
 
         $property = new \ReflectionProperty($object, 'link');

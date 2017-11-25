@@ -6,11 +6,11 @@ use NeoParla\DbEscaper\Link;
 
 interface Binding {
 
-    const STRING  = 'String';
-    const INTEGER = 'Integer';
-    const FIELD   = 'Field';
-    const TUPLE   = 'Tuple';
-    const DOUBLE  = 'Double';
+    const STRING  = 'StringBinder';
+    const INTEGER = 'IntegerBinder';
+    const FIELD   = 'FieldBinder';
+    const TUPLE   = 'TupleBinder';
+    const DOUBLE  = 'DoubleBinder';
 
     public function __construct(Link $link, $value);
     public function isValid();

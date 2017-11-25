@@ -2,7 +2,7 @@
 
 namespace NeoParla\DbEscaper;
 
-use NeoParla\DbEscaper\Link\MySql;
+use NeoParla\DbEscaper\Link\MySqlDbEscaper;
 use NeoParla\DbEscaper\Statement\DbStatement;
 
 class DbEscaper {
@@ -18,7 +18,7 @@ class DbEscaper {
     private $link;
 
     private function __construct($connection_data) {
-        $this->link = new MySql();
+        $this->link = new MySqlDbEscaper();
         $this->link->setConnectionData($connection_data);
     }
 

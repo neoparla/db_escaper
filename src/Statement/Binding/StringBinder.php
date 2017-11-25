@@ -4,7 +4,7 @@ namespace NeoParla\DbEscaper\Statement\Binding;
 
 use NeoParla\DbEscaper\Link;
 
-class String implements Binding {
+class StringBinder implements Binding {
 
     private $value;
     private $link;
