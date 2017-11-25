@@ -4,7 +4,7 @@ namespace NeoParla\DbEscaper\Statement\Binding;
 
 use stdClass;
 
-class FieldTest extends BindingTestAbstract {
+class FieldBinderTest extends BindingTestAbstract {
 
     /**
      * @return string

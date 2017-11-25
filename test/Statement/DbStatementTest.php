@@ -9,7 +9,7 @@ use PHPUnit_Framework_TestCase;
 class DbStatementTest extends PHPUnit_Framework_TestCase {
     const DEFAULT_QUERY = 'query';
     const DEFAULT_LABEL = 'Label';
-    const DEFAULT_BINDING = 'String';
+    const DEFAULT_BINDING = Binding::STRING;
 
     /**
      * @var DbStatement

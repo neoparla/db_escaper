@@ -4,7 +4,7 @@ namespace NeoParla\DbEscaper\Statement\Binding;
 
 use NeoParla\DbEscaper\Link;
 
-class Integer implements Binding {
+class DoubleBinder implements Binding {
 
     private $value;
     public function __construct(Link $link, $value)
@@ -16,16 +16,16 @@ class Integer implements Binding {
     {
         return (
             is_numeric($this->value)
-            && $this->value == intval($this->value)
+            && $this->value == doubleval($this->value)
         );
     }
 
     public function getRealValue()
     {
         if (!$this->isValid()) {
-            throw new BindingException('Not a valid Integer value');
+            throw new BindingException('Not a valid Double value');
         }
 
-        return intval($this->value);
+        return doubleval($this->value);
     }
 }

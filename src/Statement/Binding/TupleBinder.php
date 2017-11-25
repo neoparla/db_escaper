@@ -5,7 +5,7 @@ namespace NeoParla\DbEscaper\Statement\Binding;
 use NeoParla\DbEscaper\Link;
 use NeoParla\DbEscaper\Statement\DbTuple;
 
-class Tuple implements Binding {
+class TupleBinder implements Binding {
 
     /**
      * @var DbTuple
